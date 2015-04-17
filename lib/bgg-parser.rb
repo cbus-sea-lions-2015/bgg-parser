@@ -1,5 +1,5 @@
 class BggParser
-  def self.parse(raw_json, library)
+  def self.parse(raw_json, library_id)
     raw_json["item"].each do |game_json|
       game = Game.new
       game.bgg_id        = game_json["id"]
@@ -15,7 +15,7 @@ class BggParser
 
       game.save
 
-      GamesLibrary.create game: game, library: library
+      GamesLibrary.create game: game, library_id: library_id
 
       game_json["link"].each do |row|
         if row["type"] == "boardgamecategory"
