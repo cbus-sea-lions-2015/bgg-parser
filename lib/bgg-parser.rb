@@ -1,5 +1,5 @@
 class BggParser
-  def self.parse(raw_json, library_id)
+  def self.games_parse(raw_json, library_id)
     raw_json["item"].each do |game_json|
       game = Game.new
       game.bgg_id        = game_json["id"]
@@ -27,5 +27,9 @@ class BggParser
         end
       end
     end
+  end
+
+  def self.user_parse(raw_json, user_id)
+    
   end
 end
