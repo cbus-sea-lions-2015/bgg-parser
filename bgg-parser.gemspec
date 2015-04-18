@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name        = 'bgg-parser'
-  s.version     = '0.0.3'
+  s.version     = '0.0.4'
   s.date        = '2015-04-16'
   s.summary     = "Parses BoardGameGeek API"
   s.description = "Parses JSON from the bgg-api gem, and creates model objects"
