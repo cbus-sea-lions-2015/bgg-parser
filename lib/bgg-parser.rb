@@ -1,7 +1,7 @@
 class BggParser
   def self.games_parse(raw_json, library_id)
     raw_json["item"].each do |game_json|
-      if game_json[0]["type"] == "boardgame"
+      if game_json["type"] == "boardgame"
         game = Game.find_or_initialize_by(bgg_id: game_json["id"])
         game.name          = game_json["name"][0]["value"] if game_json["name"]
         game.description   = ActionView::Base.full_sanitizer.sanitize(game_json["description"][0]).gsub(/\n/, "").gsub(/\s+/, " ")
