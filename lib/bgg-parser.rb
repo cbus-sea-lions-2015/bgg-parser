@@ -3,7 +3,7 @@ class BggParser
     raw_json["item"].each do |game_json|
       game = Game.find_or_initialize_by(bgg_id: game_json["id"])
       game.name          = game_json["name"][0]["value"] if game_json["name"]
-      game.description   = game_json["description"]
+      game.description   = ActionView::Base.full_sanitizer.sanitize(game_json["description"][0]).gsub(/\n/, "").gsub(/\s+/, " ")
       game.minplayers    = game_json["minplayers"][0]["value"].to_i if game_json["minplayers"]
       game.maxplayers    = game_json["maxplayers"][0]["value"].to_i if game_json["maxplayers"]
       game.minplaytime   = game_json["minplaytime"][0]["value"].to_i if game_json["minplaytime"]
@@ -32,6 +32,6 @@ class BggParser
   end
 
   def self.user_parse(raw_json, user_id)
-    
+
   end
 end
